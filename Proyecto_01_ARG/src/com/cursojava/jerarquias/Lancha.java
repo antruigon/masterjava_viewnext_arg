@@ -1,5 +1,7 @@
 package com.cursojava.jerarquias;
 
+import com.cursojava.jerarquias.interfaces.Acuatico;
+
 public class Lancha extends Vehiculo implements Acuatico {
 
 	/**

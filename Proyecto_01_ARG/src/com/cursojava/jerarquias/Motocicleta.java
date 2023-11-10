@@ -1,5 +1,7 @@
 package com.cursojava.jerarquias;
 
+import com.cursojava.jerarquias.interfaces.Terrestre;
+
 public class Motocicleta extends Vehiculo implements Terrestre {
 
 	/**

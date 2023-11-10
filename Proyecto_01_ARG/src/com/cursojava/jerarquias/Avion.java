@@ -1,5 +1,8 @@
 package com.cursojava.jerarquias;
 
+import com.cursojava.jerarquias.interfaces.Aereo;
+import com.cursojava.jerarquias.interfaces.TransportePublico;
+
 public class Avion extends Vehiculo implements Aereo, TransportePublico {
 
 	/**

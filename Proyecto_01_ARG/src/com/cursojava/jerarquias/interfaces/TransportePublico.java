@@ -1,4 +1,4 @@
-package com.cursojava.jerarquias;
+package com.cursojava.jerarquias.interfaces;
 
 public interface TransportePublico {
 

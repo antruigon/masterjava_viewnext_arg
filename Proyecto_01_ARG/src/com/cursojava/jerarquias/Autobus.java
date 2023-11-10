@@ -1,5 +1,8 @@
 package com.cursojava.jerarquias;
 
+import com.cursojava.jerarquias.interfaces.Terrestre;
+import com.cursojava.jerarquias.interfaces.TransportePublico;
+
 public class Autobus extends Vehiculo implements Terrestre, TransportePublico {
 
 	/**

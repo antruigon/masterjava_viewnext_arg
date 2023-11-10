@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.cursojava.jerarquias.interfaces.Acuatico;
+import com.cursojava.jerarquias.interfaces.Aereo;
+import com.cursojava.jerarquias.interfaces.Terrestre;
+import com.cursojava.jerarquias.interfaces.TransportePublico;
+
 public class Principal {
 
 	public static void main(String[] args) {
