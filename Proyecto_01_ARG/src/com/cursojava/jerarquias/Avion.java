@@ -11,6 +11,11 @@ public class Avion extends Vehiculo implements Aereo, TransportePublico {
 	private int numeroPlazas;
 
 	/**
+	 * Variable para controlar tren de aterrizaje. (true significaría desplegado)
+	 */
+	private Boolean tAterrizaje;
+	
+	/**
 	 * Constructor que asigna por defecto 5 ruedas y pide matricula y numero de plazas
 	 * @param matricula
 	 * @param numeroPlazas
@@ -18,6 +23,7 @@ public class Avion extends Vehiculo implements Aereo, TransportePublico {
 	public Avion(String matricula, int numeroPlazas) {
 		super(matricula, 5);
 		this.numeroPlazas = numeroPlazas;
+		this.tAterrizaje = true;
 	}
 
 	/**
@@ -31,10 +37,16 @@ public class Avion extends Vehiculo implements Aereo, TransportePublico {
 
 	/**
 	 * Método volar implementado de la interfaz Aereo
+	 * @throws ExcepcionAereo 
 	 */
 	@Override
-	public void volar() {
-		System.out.println("Su avión va a prodecer a arrancar el vuelo");
+	public void volar() throws ExcepcionAereo {
+		if(this.tAterrizaje) {
+			throw new ExcepcionAereo(111);
+		}
+		else {			
+			System.out.println("Su avión va a prodecer a arrancar el vuelo");
+		}
 
 	}
 
@@ -59,6 +71,7 @@ public class Avion extends Vehiculo implements Aereo, TransportePublico {
 	 */
 	@Override
 	public void activarTrenAterrizaje() {
+		this.tAterrizaje = true;
 		System.out.println("Desplegando tren de aterrizaje");
 		
 	}
@@ -68,6 +81,7 @@ public class Avion extends Vehiculo implements Aereo, TransportePublico {
 	 */
 	@Override
 	public void desactivarTrenAterrizaje() {
+		this.tAterrizaje = false;
 		System.out.println("Recogiendo tren de aterrizaje");
 		
 	}

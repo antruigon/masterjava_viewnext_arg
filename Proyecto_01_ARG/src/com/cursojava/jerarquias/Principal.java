@@ -20,9 +20,6 @@ public class Principal {
 		List<Vehiculo> listaVehiculos = crearVehiculos(edadMaximaVehiculo);
 		System.out.println("Se ha cargado una lista de " + listaVehiculos.size() + " vehiculos");
 		
-		/**
-		 * Ejecutamos las acciones disponibles para cada vehículo de la lista anterior
-		 */
 		accionarVehiculos(listaVehiculos);
 		
 		int numeroVehiculosMatriculados = Vehiculo.getNumeroVehiculosMatriculados();
@@ -78,9 +75,20 @@ public class Principal {
 			}
 			
 			if (vehiculo instanceof Aereo) {
-				((Aereo) vehiculo).volar();
-				((Aereo) vehiculo).activarTrenAterrizaje();
+				
+				try {
+					((Aereo) vehiculo).volar();
+				} catch (ExcepcionAereo e) {
+					System.out.println(e.getMessage());
+				}
+				
 				((Aereo) vehiculo).desactivarTrenAterrizaje();
+				
+				try {
+					((Aereo) vehiculo).volar();
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+				}
 			}
 			
 			if (vehiculo instanceof TransportePublico) {
