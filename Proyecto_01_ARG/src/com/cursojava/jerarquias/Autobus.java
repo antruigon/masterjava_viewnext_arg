@@ -20,14 +20,14 @@ public class Autobus extends Vehiculo implements Terrestre, TransportePublico {
 		this.numeroPlazas = numeroPlazas;
 	}
 
-	/**
-	 * Método iniciarTrayecto implementado de la interfaz TransportePublico
-	 */
-	@Override
-	public void iniciarTrayecto() {
-		System.out.println("Pongase comodo, se va a iniciar el trayecto");
-
-	}
+//	/**
+//	 * Método iniciarTrayecto implementado de la interfaz TransportePublico
+//	 */
+//	@Override
+//	public void iniciarTrayecto() {
+//		System.out.println("Pongase comodo, se va a iniciar el trayecto");
+//
+//	}
 
 	/**
 	 * Método circular implementado de la interfaz Terrestre

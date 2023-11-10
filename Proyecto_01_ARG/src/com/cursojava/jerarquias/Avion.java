@@ -26,14 +26,14 @@ public class Avion extends Vehiculo implements Aereo, TransportePublico {
 		this.tAterrizaje = true;
 	}
 
-	/**
-	 * Método iniciarTrayecto implementado de la interfaz TransportePublico
-	 */
-	@Override
-	public void iniciarTrayecto() {
-		System.out.println("Pongase comodo, se va a iniciar el trayecto");
-
-	}
+//	/**
+//	 * Método iniciarTrayecto implementado de la interfaz TransportePublico
+//	 */
+//	@Override
+//	public void iniciarTrayecto() {
+//		System.out.println("Pongase comodo, se va a iniciar el trayecto");
+//
+//	}
 
 	/**
 	 * Método volar implementado de la interfaz Aereo
