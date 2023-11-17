@@ -20,12 +20,18 @@ if(listaProductos.isEmpty()) {
 }
 %>
 
+<%
+String mensaje = (String)request.getAttribute("mensaje");
+if(mensaje != null){%>
+	<h4 style="background-color: green;"> <%=mensaje %> </h4>
+<%}%>
+
 <h1>Página principal</h1>
 
 <ul>
 <li> <a href="busqueda.jsp">Búsquedas</a> </li>
 <li> <a href="busquedanoseccion.jsp">Búsqueda (sin seccion)</a> </li>
-<li> <a href="altas.html">Altas</a> </li>
+<li> <a href="altas.jsp">Altas</a> </li>
 <li> <a href="eliminar.jsp">Eliminación</a> </li>
 <li> <a href="modificar.jsp">Modificación</a> </li>
 </ul>

@@ -8,6 +8,12 @@
 </head>
 <body>
 
+<%
+String mensaje = (String)request.getAttribute("mensaje");
+if(mensaje != null){%>
+	<h4 style="background-color: green;"> <%=mensaje %> </h4>
+<%}%>
+
 <h1>Dar de alta un producto: </h1> <a href="index.jsp">Volver a home</a>
 
 <form action="Alta" method="POST">

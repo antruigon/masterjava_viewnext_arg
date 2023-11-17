@@ -32,6 +32,7 @@ public class Modificacion extends HttpServlet {
 		ServiceProductos sP = new ServiceProductos();
 		sP.modificarProducto(nombre, seccion, precio, stock, id);
 		
+		request.setAttribute("mensaje", "Producto modificado correctamente");
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
 		dispatcher.include(request, response);
 		

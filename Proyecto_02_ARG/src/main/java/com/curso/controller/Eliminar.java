@@ -25,8 +25,9 @@ public class Eliminar extends HttpServlet {
 		ServiceProductos sP = new ServiceProductos();
 		sP.eliminarProducto(nombreProducto);
 		
+		request.setAttribute("mensaje", "Producto eliminado correctamente");
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
-		dispatcher.include(request, response);
+		dispatcher.forward(request, response);
 		
 	}
 
