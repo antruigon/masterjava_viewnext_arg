@@ -24,7 +24,7 @@
 	<form action="Eliminar" method="POST">
 		<select name="producto">
 			<% for(Producto p: listaProductos){ %>
-				<option value="<%=p.getNombre()%>">
+				<option value="<%=p.getId()%>">
 					<%=p.getNombre() %>
 				</option>
 			<%} %>
