@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 public class Producto {
 
@@ -13,6 +14,7 @@ public class Producto {
 	private int stock;
 	private static List<Producto> listaProductos = new ArrayList<>();
 	private static Set<String> secciones = new HashSet<String>();
+	private String id;
 	
 	public Producto(String nombre, String seccion, Double precio, int stock) {
 		super();
@@ -20,18 +22,7 @@ public class Producto {
 		this.seccion = seccion;
 		this.precio = precio;
 		this.stock = stock;
-
-		secciones.add(seccion);
-	}
-	
-	public Producto(String nombre, String seccion, Double precio, int stock, List<Producto> lista) {
-		super();
-		this.nombre = nombre;
-		this.seccion = seccion;
-		this.precio = precio;
-		this.stock = stock;
-
-		listaProductos = lista;
+		this.id  = UUID.randomUUID().toString();
 		secciones.add(seccion);
 	}
 
@@ -74,6 +65,10 @@ public class Producto {
 	public static void setListaProductos(List<Producto> lista) {
 		listaProductos = lista;
 	}
+	
+	public static void addListaProductos(Producto producto) {
+		listaProductos.add(producto);
+	}
 
 	public static Set<String> getSecciones() {
 		return secciones;
@@ -83,4 +78,7 @@ public class Producto {
 		Producto.secciones = secciones;
 	}
 	
+	public String getId() {
+		return id;
+	}
 }

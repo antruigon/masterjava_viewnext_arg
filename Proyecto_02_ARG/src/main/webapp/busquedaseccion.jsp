@@ -17,14 +17,20 @@ List<Producto> listaProductosSeccion = sP.buscarPorSeccion(seccion);
 <body>
 
 
-<h1> Ha seleccionado: <%=seccion %></h1> <a href="index.html">Volver a home</a>
+<h1> Ha seleccionado: <%=seccion %></h1> <a href="index.jsp">Volver a home</a>
+
+<% 
+if(listaProductosSeccion.isEmpty()){%>
+	<h3>Ya no hay productos de esta sección</h3>
+<%} else{%>
 
 <% for(Producto p: listaProductosSeccion) { %>
 	<h3> <%=p.getNombre() %> </h3>
 	<h4> Precio: <%=p.getPrecio() %> </h4>
 	<h5> Stock: <%=p.getStock() %> </h5>
 	<hr>
-	<%} %>
+	<%} 
+	}%>
 
 </body>
 </html>

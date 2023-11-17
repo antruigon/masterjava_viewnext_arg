@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<h1>Dar de alta un producto: </h1> <a href="index.html">Volver a home</a>
+<h1>Dar de alta un producto: </h1> <a href="index.jsp">Volver a home</a>
 
 <form action="Alta" method="POST">
 	Nombre del producto: <input type="text" name="nombre"> <br>

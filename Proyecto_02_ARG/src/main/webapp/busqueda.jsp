@@ -17,7 +17,7 @@
 	List<Producto> lista = sP.buscarTodo();
 	Set<String> secciones = Producto.getSecciones();
 	%>
-	<a href="index.html">Volver a home</a>
+	<a href="index.jsp">Volver a home</a>
 	<h1>Selecciona una sección:</h1> 
 
 	<form action="Buscador" method="POST">

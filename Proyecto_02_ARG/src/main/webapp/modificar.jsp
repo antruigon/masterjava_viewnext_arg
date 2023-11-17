@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<a href="index.html">Volver a home</a>
+<a href="index.jsp">Volver a home</a>
 <h1>Selecciona un producto para modificarlo</h1>
 	
 	<%

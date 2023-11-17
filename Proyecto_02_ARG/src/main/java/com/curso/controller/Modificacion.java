@@ -27,10 +27,12 @@ public class Modificacion extends HttpServlet {
 		Double precio = Double.valueOf(request.getParameter("precio"));
 		Integer stock = Integer.valueOf(request.getParameter("stock"));
 		
-		ServiceProductos sP = new ServiceProductos();
-		sP.modificarProducto(nombre, seccion, precio, stock);
+		String id = request.getParameter("id");
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/index.html");
+		ServiceProductos sP = new ServiceProductos();
+		sP.modificarProducto(nombre, seccion, precio, stock, id);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
 		dispatcher.include(request, response);
 		
 	}

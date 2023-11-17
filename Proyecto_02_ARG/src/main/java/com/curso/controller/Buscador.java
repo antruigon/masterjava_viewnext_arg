@@ -1,6 +1,10 @@
 package com.curso.controller;
 
 import java.io.IOException;
+import java.util.List;
+
+import com.curso.model.Producto;
+import com.curso.service.ServiceProductos;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -19,7 +23,7 @@ public class Buscador extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String seccion = request.getParameter("seccion");	
-
+		
 		request.setAttribute("seccion", seccion);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/busquedaseccion.jsp");
 		dispatcher.include(request, response);

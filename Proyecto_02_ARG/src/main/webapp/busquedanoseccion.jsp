@@ -4,9 +4,8 @@
 <%@page import="com.curso.model.Producto"%>
 <%@page import="java.util.List"%>
 <%
-String seccion = request.getParameter("seccion");
 ServiceProductos sP = new ServiceProductos();
-List<Producto> listaProductosSeccion = sP.buscarTodo();
+List<Producto> listaProductos = sP.buscarTodo();
 %>
 <!DOCTYPE html>
 <html>
@@ -17,9 +16,9 @@ List<Producto> listaProductosSeccion = sP.buscarTodo();
 <body>
 
 
-<h1> Ha seleccionado: <%=seccion %></h1> <a href="index.html">Volver a home</a>
+<h1> Mostrando todos los productos</h1> <a href="index.jsp">Volver a home</a>
 
-<% for(Producto p: listaProductosSeccion) { %>
+<%for(Producto p: listaProductos) { %>
 	<h3> <%=p.getNombre() %> </h3>
 	<h4> Seccion: <%=p.getSeccion() %> </h4>
 	<h4> Precio: <%=p.getPrecio() %> </h4>

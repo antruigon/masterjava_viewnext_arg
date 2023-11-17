@@ -10,7 +10,7 @@ import com.curso.model.Producto;
 
 public class ServiceProductos {
 
-	public List<Producto> buscarTodo() {
+	public void iniciar() {
 		Producto p1 = new Producto("iPhone 8", "Electronica", 500.0, 30);
 		Producto p2 = new Producto("Microondas", "Electrodomestico", 50.50, 10);
 		Producto p3 = new Producto("Camiseta", "Ropa", 20.0, 40);
@@ -22,8 +22,10 @@ public class ServiceProductos {
 		Collections.addAll(listaProductos, p1, p2, p3, p4, p5, p6);
 		
 		Producto.setListaProductos(listaProductos);
+	}
 
-		return listaProductos;
+	public List<Producto> buscarTodo() {
+		return Producto.getListaProductos();
 	}
 	
 	public List<Producto> buscarPorSeccion(String seccion){
@@ -40,8 +42,7 @@ public class ServiceProductos {
 		List<Producto> listaProductos = Producto.getListaProductos();
 		listaProductos.add(p);
 		
-		Producto p2 = new Producto(nombre, seccion, precio, stock, listaProductos);
-//		Producto.setListaProductos(listaProductos);
+		Producto.setListaProductos(listaProductos);
 	}
 	
 	public void eliminarProducto(String nombre) {
@@ -52,9 +53,9 @@ public class ServiceProductos {
 		Producto.setListaProductos(nuevaLista);
 	}
 	
-	public void modificarProducto(String nombre, String seccion, Double precio, int stock) {
+	public void modificarProducto(String nombre, String seccion, Double precio, int stock, String id) {
 		List<Producto> nuevaLista = Producto.getListaProductos().stream()
-				.filter(x -> !x.getNombre().equals(nombre))
+				.filter(x -> !(x.getId().equals(id)))
 				.collect(Collectors.toList());
 		
 		Producto p = new Producto(nombre, seccion, precio, stock);
