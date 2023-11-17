@@ -18,6 +18,7 @@ public class Modificar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
+	 * Este método hace de intermediario a la hora de la modificacion de un producto
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */

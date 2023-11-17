@@ -18,6 +18,7 @@ public class Modificacion extends HttpServlet {
 
 
 	/**
+	 * Este método gestiona la lógica de modificación de un producto tras el envío del formulario
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
