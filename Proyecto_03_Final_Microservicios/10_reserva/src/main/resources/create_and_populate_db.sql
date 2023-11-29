@@ -11,7 +11,7 @@ CREATE TABLE `hoteles` (
 
 CREATE TABLE `vuelos` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `compañia` varchar(45) DEFAULT NULL,
+  `company` varchar(45) DEFAULT NULL,
   `fecha` datetime DEFAULT NULL,
   `precio` double DEFAULT NULL,
   `plazas` int DEFAULT NULL,
@@ -38,16 +38,16 @@ INSERT INTO hoteles (idhotel, nombre, categoria, precio, disponible) VALUES (6, 
 INSERT INTO hoteles (idhotel, nombre, categoria, precio, disponible) VALUES (7, 'Hotel Sunset', '3 estrellas', 80.00, 1);
 INSERT INTO hoteles (idhotel, nombre, categoria, precio, disponible) VALUES (8, 'Hotel Ocean', '4 estrellas', 120.00, 1);
 
-INSERT INTO vuelos (id, compañia, fecha, precio, plazas) VALUES (1, 'Aerolineas Argentinas', '2022-02-10 08:00:00', 150.00, 10);
-INSERT INTO vuelos (id, compañia, fecha, precio, plazas) VALUES (2, 'LATAM', '2022-02-15 10:00:00', 200.00, 15);
-INSERT INTO vuelos (id, compañia, fecha, precio, plazas) VALUES (3, 'American Airlines', '2022-02-20 12:00:00', 300.00, 20);
-INSERT INTO vuelos (id, compañia, fecha, precio, plazas) VALUES (4, 'Delta', '2022-02-25 14:00:00', 400.00, 25);
-INSERT INTO vuelos (id, compañia, fecha, precio, plazas) VALUES (5, 'Iberia', '2022-03-01 16:00:00', 500.00, 30);
-INSERT INTO vuelos (id, compañia, fecha, precio, plazas) VALUES (6, 'Air Europa', '2022-03-05 18:00:00', 600.00, 35);
-INSERT INTO vuelos (id, compañia, fecha, precio, plazas) VALUES (7, 'United', '2022-03-10 20:00:00', 700.00, 40);
-INSERT INTO vuelos (id, compañia, fecha, precio, plazas) VALUES (8, 'British Airways', '2022-03-15 22:00:00', 800.00, 45);
-INSERT INTO vuelos (id, compañia, fecha, precio, plazas) VALUES (9, 'Air France', '2022-03-20 06:00:00', 900.00, 50);
-INSERT INTO vuelos (id, compañia, fecha, precio, plazas) VALUES (10, 'KLM', '2022-03-25 08:00:00', 1000.00, 55);
+INSERT INTO vuelos (id, company, fecha, precio, plazas) VALUES (1, 'Aerolineas Argentinas', '2022-02-10 08:00:00', 150.00, 10);
+INSERT INTO vuelos (id, company, fecha, precio, plazas) VALUES (2, 'LATAM', '2022-02-15 10:00:00', 200.00, 15);
+INSERT INTO vuelos (id, company, fecha, precio, plazas) VALUES (3, 'American Airlines', '2022-02-20 12:00:00', 300.00, 20);
+INSERT INTO vuelos (id, company, fecha, precio, plazas) VALUES (4, 'Delta', '2022-02-25 14:00:00', 400.00, 25);
+INSERT INTO vuelos (id, company, fecha, precio, plazas) VALUES (5, 'Iberia', '2022-03-01 16:00:00', 500.00, 30);
+INSERT INTO vuelos (id, company, fecha, precio, plazas) VALUES (6, 'Air Europa', '2022-03-05 18:00:00', 600.00, 35);
+INSERT INTO vuelos (id, company, fecha, precio, plazas) VALUES (7, 'United', '2022-03-10 20:00:00', 700.00, 40);
+INSERT INTO vuelos (id, company, fecha, precio, plazas) VALUES (8, 'British Airways', '2022-03-15 22:00:00', 800.00, 45);
+INSERT INTO vuelos (id, company, fecha, precio, plazas) VALUES (9, 'Air France', '2022-03-20 06:00:00', 900.00, 50);
+INSERT INTO vuelos (id, company, fecha, precio, plazas) VALUES (10, 'KLM', '2022-03-25 08:00:00', 1000.00, 55);
 
 INSERT INTO reservas (id, cliente, dni, id_hotel, id_vuelo, personas_reserva) VALUES (1, 'Juan Pérez', '12345678', 1, 1, 4);
 INSERT INTO reservas (id, cliente, dni, id_hotel, id_vuelo, personas_reserva) VALUES (2, 'María García', '78901234', 2, 2, 4);

@@ -25,8 +25,8 @@ public class VuelosServiceImpl implements VuelosService{
 	}
 
 	@Override
-	public List<Vuelo> findVuelosCompañia(String compañia) {
-		return dao.findByCompañia(compañia);
+	public List<Vuelo> findVuelosCompany(String company) {
+		return dao.findByCompany(company);
 	}
 	
 	/**

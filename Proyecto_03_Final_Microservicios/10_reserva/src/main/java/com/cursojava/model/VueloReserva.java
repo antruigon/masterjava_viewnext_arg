@@ -2,32 +2,22 @@ package com.cursojava.model;
 
 import java.time.LocalDateTime;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+public class VueloReserva {
 
-@Entity
-@Table(name = "vuelos")
-public class Vuelo {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String company;
+	private String compañia;
 	private LocalDateTime fecha;
 	private Double precio;
 	private Integer plazas;
 	
-	public Vuelo() {
+	public VueloReserva() {
 		super();
 	}
 	
-	public Vuelo(Integer id, String company, LocalDateTime fecha, Double precio, Integer plazas) {
+	public VueloReserva(Integer id, String compañia, LocalDateTime fecha, Double precio, Integer plazas) {
 		super();
 		this.id = id;
-		this.company = company;
+		this.compañia = compañia;
 		this.fecha = fecha;
 		this.precio = precio;
 		this.plazas = plazas;
@@ -41,12 +31,12 @@ public class Vuelo {
 		this.id = id;
 	}
 
-	public String getCompany() {
-		return company;
+	public String getCompañia() {
+		return compañia;
 	}
 
-	public void setCompany(String company) {
-		this.company = company;
+	public void setCompañia(String compañia) {
+		this.compañia = compañia;
 	}
 
 	public LocalDateTime getFecha() {
@@ -73,4 +63,5 @@ public class Vuelo {
 		this.plazas = plazas;
 	}
 
+	
 }

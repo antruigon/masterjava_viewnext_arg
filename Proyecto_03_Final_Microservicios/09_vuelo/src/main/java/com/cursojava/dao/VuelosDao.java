@@ -22,9 +22,9 @@ public interface VuelosDao extends JpaRepository<Vuelo, Integer> {
 	 * Método que se encarga de obtener y devolverlos vuelos de la base de datos
 	 * según la compañía
 	 * 
-	 * @param compañia
+	 * @param company
 	 * @return
 	 */
-	List<Vuelo> findByCompañia(String compañia);
+	List<Vuelo> findByCompany(String company);
 	
 }

@@ -23,10 +23,10 @@ public interface VuelosService {
 	
 	/**
 	 * Método que devuelve todos los vuelos de una compañía
-	 * @param compañia
+	 * @param company
 	 * @return
 	 */
-	List<Vuelo> findVuelosCompañia(String compañia);
+	List<Vuelo> findVuelosCompany(String company);
 	
 	/**
 	 * Método para actualizar un registro de Vuelo

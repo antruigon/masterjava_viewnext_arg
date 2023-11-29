@@ -10,6 +10,7 @@ import org.springframework.web.client.RestTemplate;
 import com.cursojava.dao.ReservasDao;
 import com.cursojava.model.HotelReserva;
 import com.cursojava.model.Reserva;
+import com.cursojava.model.VueloReserva;
 
 @Service
 public class ReservasServiceImpl implements ReservasService {
@@ -53,17 +54,29 @@ public class ReservasServiceImpl implements ReservasService {
 	 * Además de añadir el registro Reserva a la base de datos, se encarga de hacer una petición
 	 * al microservicio Vuelos para actualizar sus registros, decrementando el numero de plazas del
 	 * vuelo en función del numero de personas de la reserva.
+	 * 
+	 * Se comprueba antes de hacer la reserva y actualizar vuelos tanto que el hotel está disponible
+	 * como que hay suficientes plazas para el vuelo.
+	 * 
+	 * (Haciendo estas comprobaciones aquí, en el microservicio Vuelos, en el endpoint del PUT no habría
+	 * que hacerla, pero se ha dejado puesta por si se llegara a lanzar el PUT de forma independiente y no
+	 * desde el microservicio en el que nos encontramos, Reservas.)
 	 */
 	@Override
 	public void postReserva(Reserva reserva) {
-		dao.save(reserva);
-		template.put(urlVuelos+"vuelos/{id}/{plazas}", null, reserva.getIdVuelo(), reserva.getPersonasReserva());
+		Boolean hotelDisponible = getHotelById(reserva.getIdHotel()).getDisponible();
+		Integer plazasDisponibles = getVueloById(reserva.getIdVuelo()).getPlazas();
+		
+		if(hotelDisponible && plazasDisponibles >= reserva.getPersonasReserva()) {			
+			dao.save(reserva);
+			template.put(urlVuelos+"vuelos/{id}/{plazas}", null, reserva.getIdVuelo(), reserva.getPersonasReserva());
+		}
 	}
 	
 	
 	/**
-	 * Método auxiliar que se encarga de utilizar la clase auxiliar HotelReserva para obtener
-	 * un hotel del microservicios Hoteles y que devuelve el id del hotel pasándole el nombre del mismo.
+	 * Método auxiliar que utiliza la clase auxiliar HotelReserva para obtener
+	 * un hotel del microservicio Hoteles y que devuelve el id del hotel pasándole el nombre del mismo.
 	 * 
 	 * Este método facilita la lectura de código para el método público findReservasHotelNombre
 	 * 
@@ -78,6 +91,42 @@ public class ReservasServiceImpl implements ReservasService {
 		return hoteles.stream()
 				.filter( h -> h.getNombre().equals(nombre))
 				.findAny().orElse(null).getId();
+	}
+	
+	
+	/**
+	 * Método auxiliar que utiliza la clase auxiliar VueloReserva para obtener un 
+	 * vuelo del microservicio Vuelos y devuelve un vuelo en función al id pasado 
+	 * como parámetro
+	 * 
+	 * @param id
+	 * @return
+	 */
+	private VueloReserva getVueloById(int id) {
+		String urlQuery = urlVuelos+"vuelos";
+		List<VueloReserva> vuelos = Arrays.asList(template.getForObject(urlQuery, VueloReserva[].class));
+		
+		return vuelos.stream()
+				.filter( v -> v.getId().equals(id))
+				.findAny().orElse(null);
+		
+	}
+	
+	/**
+	 * Método auxiliar que utiliza la clase auxiliar HotelReserva para obtener un 
+	 * vuelo del microservicio Hoteles y devuelve un hotel en función al id pasado 
+	 * como parámetro
+	 * 
+	 * @param id
+	 * @return
+	 */
+	private HotelReserva getHotelById(int id) {
+		String urlQuery = urlHoteles+"hoteles";
+		List<HotelReserva> hoteles = Arrays.asList(template.getForObject(urlQuery, HotelReserva[].class));
+		
+		return hoteles.stream()
+				.filter( h -> h.getId().equals(id))
+				.findAny().orElse(null);
 	}
 	
 }

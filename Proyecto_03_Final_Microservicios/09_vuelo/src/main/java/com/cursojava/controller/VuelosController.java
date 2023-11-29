@@ -45,13 +45,13 @@ public class VuelosController {
 	/**
 	 * Endpoint que devuelve todos los vuelos de una compañía
 	 * 
-	 * @url http://localhost:8081/vuelos/compañia/{compañia}
-	 * @param compañia
+	 * @url http://localhost:8081/vuelos/company/{company}
+	 * @param company
 	 * @return
 	 */
-	@GetMapping(value = "vuelos/compañia/{compañia}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Vuelo> findVuelosCompañia(@PathVariable String compañia){
-		return service.findVuelosCompañia(compañia);
+	@GetMapping(value = "vuelos/company/{company}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Vuelo> findVuelosCompany(@PathVariable String company){
+		return service.findVuelosCompany(company);
 	}
 	
 	/**
