@@ -22,6 +22,7 @@
 # Proyecto 3 - Final
   ## Información general
   Proyecto desarrollado con Spring Boot y Spring Data JPA que consta de 3 microservicios (hoteles, vuelos, reservas) que se relacionan entre ellos para simular una serie de funcionalidades.
+  Versión 2: añadido microservicio Promociones que interactúa con el microservicio de reservas.
 
   ## Implementación
   Este proyecto consta de 3 microservicios con los siguientes endpoints:
@@ -44,4 +45,11 @@
   - GET /reservas/vuelo/{id}: devuelve todas las reservas de un vuelo dado el id del mismo
   - GET /reservas/dni/{dni}: devuelve todas las reservas de un cliente dado su dni
   - POST /reservas: añade un registro y actualiza en vuelos según el numero de personas en la reserva
+  - *(v2)* POST /reservas/promocion/{id}: añade un registro aplicando una promoción y actualiza los registros necesarios
+
+  ### Mircroservicio promociones:
+  - GET /promociones: devuelve todas las promociones. Se le puede pasar el parámetro "activa" en true para que muestre solo las promociones activas
+  - POST /promociones: añade una promoción. Se puede aplicar tanto a un hotel como a un vuelo como a las dos (pasándole en el body el id del hotel/vuelo)
+  - /PUT /promociones/estado/id: actualiza el estado de la promoción. ***Cuando se llama desde el microservicio Reservas lo que hace es cambiar su estado: como estará activa cambiará a false. No obstante, el método lo dejamos accesible para poder modificarlo sin tener que hacer una reserva***
+
   
