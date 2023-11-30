@@ -46,5 +46,14 @@ public interface ReservasService {
 	 * @param reserva
 	 */
 	void postReserva(Reserva reserva);
+	
+	/**
+	 *  Método que se encarga de añadir un registro de Reserva a la base de datos
+	 *  aplicando una promocion dada su id
+	 * 
+	 * @param reserva
+	 * @param id
+	 */
+	void postReservaPromocion(Reserva reserva, int id);
 
 }

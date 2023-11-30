@@ -18,6 +18,7 @@ public class Reserva {
 	private Integer idHotel;
 	private Integer idVuelo;
 	private Integer personasReserva;
+	private Double precioTotal;
 	
 	public Reserva() {
 		super();
@@ -79,6 +80,14 @@ public class Reserva {
 
 	public void setPersonasReserva(Integer personasReserva) {
 		this.personasReserva = personasReserva;
+	}
+
+	public Double getPrecioTotal() {
+		return precioTotal;
+	}
+
+	public void setPrecioTotal(Double precioTotal) {
+		this.precioTotal = precioTotal;
 	}
 	
 }

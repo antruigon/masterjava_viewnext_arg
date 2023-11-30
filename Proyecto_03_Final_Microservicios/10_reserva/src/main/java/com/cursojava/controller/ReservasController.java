@@ -85,8 +85,20 @@ public class ReservasController {
 	 * @param reserva
 	 */
 	@PostMapping(value = "reservas", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void findReservasHotelNombre(@RequestBody Reserva reserva){
+	public void postReserva(@RequestBody Reserva reserva){
 		service.postReserva(reserva);
+	}
+	
+	/**
+	 * Endpoint para añadir una reserva con una promoción aplicada (haciendo
+	 * uso del microservicio promociones)
+	 * 
+	 * @param reserva
+	 * @param id
+	 */
+	@PostMapping(value = "reservas/promocion/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public void postReservaPromocion(@RequestBody Reserva reserva, @PathVariable int id){
+		service.postReservaPromocion(reserva, id);
 	}
 	
 }
