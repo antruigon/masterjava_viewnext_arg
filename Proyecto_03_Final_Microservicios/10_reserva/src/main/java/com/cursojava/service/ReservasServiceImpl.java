@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.cursojava.dao.ReservasDao;
-import com.cursojava.model.HotelReserva;
-import com.cursojava.model.PromocionReserva;
+import com.cursojava.dto.HotelDto;
+import com.cursojava.dto.PromocionDto;
 import com.cursojava.model.Reserva;
-import com.cursojava.model.VueloReserva;
+import com.cursojava.dto.VueloDto;
 
 @Service
 public class ReservasServiceImpl implements ReservasService {
@@ -67,8 +67,8 @@ public class ReservasServiceImpl implements ReservasService {
 	 */
 	@Override
 	public void postReserva(Reserva reserva) {
-		HotelReserva hotel = this.getHotelById(reserva.getIdHotel());
-		VueloReserva vuelo = this.getVueloById(reserva.getIdVuelo());
+		HotelDto hotel = this.getHotelById(reserva.getIdHotel());
+		VueloDto vuelo = this.getVueloById(reserva.getIdVuelo());
 		
 		Boolean hotelDisponible = hotel.getDisponible();
 		Integer plazasDisponibles = vuelo.getPlazas();
@@ -92,8 +92,8 @@ public class ReservasServiceImpl implements ReservasService {
 	 */
 	@Override
 	public void postReservaPromocion(Reserva reserva, int id) {
-		HotelReserva hotel = this.getHotelById(reserva.getIdHotel());
-		VueloReserva vuelo = this.getVueloById(reserva.getIdVuelo());
+		HotelDto hotel = this.getHotelById(reserva.getIdHotel());
+		VueloDto vuelo = this.getVueloById(reserva.getIdVuelo());
 		
 		Boolean hotelDisponible = hotel.getDisponible();
 		Integer plazasDisponibles = vuelo.getPlazas();
@@ -120,13 +120,16 @@ public class ReservasServiceImpl implements ReservasService {
 	 * @param personasReserva
 	 * @return
 	 */
-	private Double calcularPrecio(HotelReserva hotel, VueloReserva vuelo, Optional<Integer> idPromocion, int personasReserva) {
-		PromocionReserva promocion = this.getPromocionById(idPromocion.orElse(null));
+	private Double calcularPrecio(HotelDto hotel, VueloDto vuelo, Optional<Integer> idPromocion, int personasReserva) {
+		PromocionDto promocion = new PromocionDto();
+		if(idPromocion != null) {			
+			promocion = this.getPromocionById(idPromocion.orElse(null));
+		}
 		
 		Double precioTotalHotel = hotel.getPrecio() * personasReserva;
 		Double precioTotalVuelo = vuelo.getPrecio() * personasReserva;
 		
-		if(promocion != null && promocion.getActiva()) {
+		if(promocion.getActiva() != null && promocion.getActiva()) {
 			if(promocion.getHotel()) {
 				precioTotalHotel = hotel.getPrecio() - ((hotel.getPrecio() * promocion.getPorcentaje())/100);
 			}
@@ -140,18 +143,18 @@ public class ReservasServiceImpl implements ReservasService {
 	}
 	
 	/**
-	 * Método auxiliar que utiliza la clase auxiliar HotelReserva para obtener
+	 * Método auxiliar que utiliza la clase auxiliar HotelDto para obtener
 	 * un hotel del microservicio Hoteles y que devuelve el id del hotel pasándole el nombre del mismo.
 	 * 
 	 * Este método facilita la lectura de código para el método público findReservasHotelNombre
 	 * 
-	 * @see HotelReserva.java
+	 * @see HotelDto.java
 	 * @param nombre
 	 * @return
 	 */
 	private Integer getIdHotelByNombre(String nombre) {
 		String urlQuery = urlHoteles+"hoteles";
-		List<HotelReserva> hoteles = Arrays.asList(template.getForObject(urlQuery, HotelReserva[].class));
+		List<HotelDto> hoteles = Arrays.asList(template.getForObject(urlQuery, HotelDto[].class));
 		
 		return hoteles.stream()
 				.filter( h -> h.getNombre().equals(nombre))
@@ -160,16 +163,16 @@ public class ReservasServiceImpl implements ReservasService {
 	
 	
 	/**
-	 * Método auxiliar que utiliza la clase auxiliar VueloReserva para obtener un 
+	 * Método auxiliar que utiliza la clase auxiliar VueloDto para obtener un 
 	 * vuelo del microservicio Vuelos y devuelve un vuelo en función al id pasado 
 	 * como parámetro
 	 * 
 	 * @param id
 	 * @return
 	 */
-	private VueloReserva getVueloById(int id) {
+	private VueloDto getVueloById(int id) {
 		String urlQuery = urlVuelos+"vuelos";
-		List<VueloReserva> vuelos = Arrays.asList(template.getForObject(urlQuery, VueloReserva[].class));
+		List<VueloDto> vuelos = Arrays.asList(template.getForObject(urlQuery, VueloDto[].class));
 		
 		return vuelos.stream()
 				.filter( v -> v.getId().equals(id))
@@ -178,16 +181,16 @@ public class ReservasServiceImpl implements ReservasService {
 	}
 	
 	/**
-	 * Método auxiliar que utiliza la clase auxiliar HotelReserva para obtener un 
+	 * Método auxiliar que utiliza la clase auxiliar HotelDto para obtener un 
 	 * vuelo del microservicio Hoteles y devuelve un hotel en función al id pasado 
 	 * como parámetro
 	 * 
 	 * @param id
 	 * @return
 	 */
-	private HotelReserva getHotelById(int id) {
+	private HotelDto getHotelById(int id) {
 		String urlQuery = urlHoteles+"hoteles";
-		List<HotelReserva> hoteles = Arrays.asList(template.getForObject(urlQuery, HotelReserva[].class));
+		List<HotelDto> hoteles = Arrays.asList(template.getForObject(urlQuery, HotelDto[].class));
 		
 		return hoteles.stream()
 				.filter( h -> h.getId().equals(id))
@@ -195,16 +198,16 @@ public class ReservasServiceImpl implements ReservasService {
 	}
 	
 	/**
-	 * Método auxiliar que utiliza la clase auxiliar PromocionReserva para obtener
+	 * Método auxiliar que utiliza la clase auxiliar PromocionDto para obtener
 	 * una promoción del microservicio Promociones y devuelve una promoción en función
 	 * del id pasado como parámetro
 	 * 
 	 * @param id
 	 * @return
 	 */
-	private PromocionReserva getPromocionById(int id) {
+	private PromocionDto getPromocionById(int id) {
 		String urlQuery = urlPromociones+"promociones";
-		List<PromocionReserva> promociones = Arrays.asList(template.getForObject(urlQuery, PromocionReserva[].class));
+		List<PromocionDto> promociones = Arrays.asList(template.getForObject(urlQuery, PromocionDto[].class));
 		
 		return promociones.stream()
 				.filter( p -> p.getId().equals(id))
